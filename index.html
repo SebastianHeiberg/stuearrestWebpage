@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grounded</title>
+    <style>
+
+        #point-item {
+            margin: 4px;
+            padding: 2px;
+        }
+
+        #result {
+            color: red;
+        }
+
+    </style>
+
+    <script>
+
+        let punishmenttime = 0
+
+        function punishment(target) {
+            
+            let randomTime = 0
+            
+            if (target === 'short-punishment') {
+                randomTime = Math.floor(Math.random() * (47 - 2 + 1)) + 2;
+            } else if (target === 'medium-punishment') {
+                randomTime = Math.floor(Math.random() * (95 - 47 + 1)) + 47;
+            } else  if (target === 'long-punishment') {
+                randomTime = Math.floor(Math.random() * (720  - 95 + 1)) + 95;
+            }
+
+            punishmenttime = randomTime
+            youAreGrounded()
+        }
+
+
+        function youAreGrounded (){ 
+            const result = document.getElementById('result')
+            const currentDate = new Date(); 
+            currentDate.setHours(currentDate.getHours() + punishmenttime);    
+            const print = currentDate.toLocaleDateString('da-DK', { day:"numeric", month: 'long', hour:"numeric", minute:"numeric", year:"numeric" })
+            
+            
+            result.innerText = "Dit barn skal have stuearrest indtil: " + print
+        } 
+
+    </script>
+
+</head>
+<body style="flex: 1;">
+    <h1 id="main-title">Velkommmen til stuearrest</h1>
+<div>
+    <div id="point-item">For at gøre det lettere for dig, har du nu tre valg: </div>
+    <div id="point-item">- En kort stuearrest betyde straf på imellem få timer til 2 dage</div> 
+    <div id="point-item">- En mellem stuearrest vil betyde 2-4 dages straf </div>
+    <div id="point-item">- En lang stuearrest er mellem 2 dage og en måned. </div>
+    <h2>Vælg hvor længe dit barn skal have stuearrest</h2>
+</div>
+<div>
+    <button onclick="punishment('short-punishment')"> Kort stuearrest </button>
+    <button onclick="punishment('medium-punishment')"> Mellem stuearrest </button>
+    <button onclick="punishment('long-punishment')"> Lang stuearrest </button>
+</div>
+
+<h2 id="result"> </h2>
+
+<section style="margin-top: 75px;">
+     <a href="/punished">Se hvad andre børn har fået af stuearrest og hvorfor</a>
+</section>
+</body>
+</html>
