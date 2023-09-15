@@ -44,9 +44,15 @@
             currentDate.setHours(currentDate.getHours() + punishmenttime);    
             const print = currentDate.toLocaleDateString('da-DK', { day:"numeric", month: 'long', hour:"numeric", minute:"numeric", year:"numeric" })
             
-            
             result.innerText = "Dit barn skal have stuearrest indtil: " + print
+
+            document.getElementById('submit-container').style.display = "block"
         } 
+
+        function recordPunishment(evt){
+            const name = document.getElementById('navn')
+            
+        }
 
     </script>
 
@@ -67,6 +73,19 @@
 </div>
 
 <h2 id="result"> </h2>
+
+<div id="submit-container" style="display: none;">
+    <form onsubmit="punishment()">
+        <label for="navn">Navn:</label>
+        <input type="text" id="navn" name="navn" placeholder="Navn på barnet" required><br><br>
+
+        <label for="description">Hvad gjorde barnet:</label><br>
+        <textarea required id="description" name="description" rows="4" cols="50" placeholder="Indtast en kort beskrivelse for stuearresten"></textarea><br><br>
+
+        <input type="submit" value="Tilføj til alle de andre slemme børn">
+    </form>
+</div>
+
 
 <section style="margin-top: 75px;">
      <a href="/punished">Se hvad andre børn har fået af stuearrest og hvorfor</a>

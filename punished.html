@@ -4,8 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <style>
+    /* Apply basic styles to the table */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+
+    /* Style the table headers */
+    th {
+        background-color: #f2f2f2;
+        text-align: left;
+        padding: 10px;
+        border: 1px solid #ddd;
+    }
+
+    /* Style the table rows */
+    tr {
+        border: 1px solid #ddd;
+    }
+
+    /* Style alternating row backgrounds for better readability */
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    /* Style table data cells */
+    td {
+        padding: 10px;
+        border: 1px solid #ddd;
+    }
+
+    </style>
+
+    <script>
+
+        const tablerows = "";
+
+    (() => { 
+        const kids = fetch("/badKids")
+            .then(res => res.json())
+            .then(data => {
+                const tablerows = data.data.badKids.map(kid => `
+                    <tr>
+                        <td>${kid.name}</td>
+                        <td>${kid.punishmentDescription}</td>
+                    </tr>`).join("");
+
+                document.getElementById("table-rows").innerHTML = tablerows;
+            });
+    })();   
+    
+
+    </script>
 </head>
 <body>
     <h1> En hel masse slemme børn!</h1>
+    <table class="table">
+        <thead>
+          <tr>
+            <th>Navn</th>
+            <th>Beskrivelse</th>
+            <th>Start for stuearrest</th>
+            <th>Slut for stuearrest</th>
+          </tr>
+        </thead>
+        <tbody id="table-rows">
+        </tbody >
+      </table>
+
+      <div> <a href="/">Tilbage til forsiden</a></div>
 </body>
 </html>
