@@ -51,6 +51,7 @@
                     <tr>
                         <td>${kid.name}</td>
                         <td>${kid.punishmentDescription}</td>
+                        <td>${kid.length}</td>
                     </tr>`).join("");
 
                 document.getElementById("table-rows").innerHTML = tablerows;
@@ -67,8 +68,7 @@
           <tr>
             <th>Navn</th>
             <th>Beskrivelse</th>
-            <th>Start for stuearrest</th>
-            <th>Slut for stuearrest</th>
+            <th>Timer i stuearrest</th>
           </tr>
         </thead>
         <tbody id="table-rows">

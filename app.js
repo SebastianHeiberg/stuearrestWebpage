@@ -1,12 +1,11 @@
-const bodyParser = require('body-parser');
 const express = require('express')
 
 const app = express()
-app.use(bodyParser.json())
+app.use(express.json())
 
 const PORT = 8080;
 
-const badKids = [ {name: 'Buster', punishmentDescription: 'Ate the cats food'}]
+const badKids = [ {name: 'Buster', punishmentDescription: 'Ate the cats food', length: '5'}]
 
 app.listen(PORT, () => {
     console.log('App is running on port: ', PORT)

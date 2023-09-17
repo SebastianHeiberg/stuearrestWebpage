@@ -37,6 +37,19 @@
             youAreGrounded()
         }
 
+        function submitPunishedKid() {
+            let kidsName = document.getElementById('name').value
+            let description = document.getElementById('description').value
+            fetch("/badkids", {method : 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ name: kidsName, punishmentDescription: description, length: punishmenttime })})
+            kidsName = ""
+            description = ""
+            document.getElementById('submit-container').style.display = "none"
+            document.getElementById('name').value = ' '
+            document.getElementById('description').value = ' '
+
+        }
 
         function youAreGrounded (){ 
             const result = document.getElementById('result')
@@ -75,15 +88,15 @@
 <h2 id="result"> </h2>
 
 <div id="submit-container" style="display: none;">
-    <form onsubmit="punishment()">
-        <label for="navn">Navn:</label>
-        <input type="text" id="navn" name="navn" placeholder="Navn på barnet" required><br><br>
+    <div>
+        <label for="name">Navn:</label>
+        <input type="text" id="name" name="name" placeholder="Navn på barnet" required><br><br>
 
         <label for="description">Hvad gjorde barnet:</label><br>
         <textarea required id="description" name="description" rows="4" cols="50" placeholder="Indtast en kort beskrivelse for stuearresten"></textarea><br><br>
 
-        <input type="submit" value="Tilføj til alle de andre slemme børn">
-    </form>
+        <button onclick="submitPunishedKid()">Tilføj til alle de andre slemme børn </button>
+    </div>
 </div>
 
 
